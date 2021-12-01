@@ -1,0 +1,116 @@
+<field_definition level="1" prec="4" operation="average" enabled=".TRUE." default_value="1.e20" >
+ <field_group id="ptrc_T" grid_ref="grid_T_3D">
+  <field id="light_ADY" long_name="light gelbstoff absorption" unit="1/m" default_value="-.200E+21" />
+  <field id="N1_p" long_name="phosphate phosphorus" unit="mmol P/m^3" default_value="-.200E+21" />
+  <field id="N3_n" long_name="nitrate nitrogen" unit="mmol N/m^3" default_value="-.200E+21" />
+  <field id="N4_n" long_name="ammonium nitrogen" unit="mmol N/m^3" default_value="-.200E+21" />
+  <field id="N5_s" long_name="silicate silicate" unit="mmol Si/m^3" default_value="-.200E+21" />
+ </field_group>
+ <field_group id="sf_T" grid_ref="grid_T_2D">
+ </field_group>
+ <field_group id="diad_T" grid_ref="grid_T_2D">
+  <field id="zenithAngle__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="zenithAngle light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="light_ADY_sms" long_name="light gelbstoff absorption sources-sinks" unit="1/m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="light_ADY_w" long_name="light gelbstoff absorption vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="light_EIR" long_name="light shortwave radiation" unit="W/m^2" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light_parEIR" long_name="light photosynthetically active radiation" unit="W/m^2" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light_xEPS" long_name="light attenuation coefficient of shortwave flux" unit="1/m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light_secchi" long_name="light Secchi depth (1.7/Kd)" unit="m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light_iopABS" long_name="light absorption coefficient of shortwave flux" unit="1/m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light_iopBBS" long_name="light backscatter coefficient of shortwave flux" unit="1/m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="light__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="light light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N1_p_sms" long_name="phosphate phosphorus sources-sinks" unit="mmol P/m^3/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N1_p_w" long_name="phosphate phosphorus vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N1__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="phosphate light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N3_n_sms" long_name="nitrate nitrogen sources-sinks" unit="mmol N/m^3/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N3_n_w" long_name="nitrate nitrogen vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N3__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="nitrate light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N4_n_sms" long_name="ammonium nitrogen sources-sinks" unit="mmol N/m^3/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N4_n_w" long_name="ammonium nitrogen vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N4__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="ammonium light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N5_s_sms" long_name="silicate silicate sources-sinks" unit="mmol Si/m^3/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N5_s_w" long_name="silicate silicate vertical velocity" unit="m/s" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="N5__attenuation_coefficient_of_photosynthetic_radiative_flux" long_name="silicate light extinction contribution computed by get_light_extinction" unit="m-1" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="zero" long_name="zero" unit="" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="attenuation_coefficient_of_photosynthetic_radiative_flux_calculator_result" long_name="attenuation_coefficient_of_photosynthetic_radiative_flux_calculator result" unit="m-1" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="total_nitrogen_calculator_result" long_name="total_nitrogen_calculator result" unit="mmol m-3" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="particulate_organic_backscatter_coefficient" long_name="particulate_organic_backscatter_coefficient" unit="1/m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="particulate_organic_absorption_coefficient" long_name="particulate_organic_absorption_coefficient" unit="1/m" default_value="-.200E+21" grid_ref="grid_T_3D" />
+  <field id="zero_sms_tot" long_name="zero_sms_tot" unit="" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="zero_w_tot" long_name="zero_w_tot" unit="" default_value="0.000E+00" grid_ref="grid_T_3D" />
+  <field id="zenithAngle_zenithA" long_name="zenithAngle zenith_angle" unit="degrees" default_value="0.000E+00" />
+  <field id="zenithAngle__surface_albedo" long_name="zenithAngle albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="zenithAngle__surface_drag_coefficient_in_air" long_name="zenithAngle surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="light_ADY_sfl" long_name="light gelbstoff absorption surface flux" unit="1/m*m/s" default_value="0.000E+00" />
+  <field id="light_ADY_bfl" long_name="light gelbstoff absorption bottom flux" unit="1/m*m/s" default_value="0.000E+00" />
+  <field id="light__surface_albedo" long_name="light albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="light__surface_drag_coefficient_in_air" long_name="light surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="N1_w_bot" long_name="phosphate near-bed vertical velocity" unit="m/s" default_value="-.200E+21" />
+  <field id="N1_p_sfl" long_name="phosphate phosphorus surface flux" unit="mmol P/m^3*m/s" default_value="0.000E+00" />
+  <field id="N1_p_bfl" long_name="phosphate phosphorus bottom flux" unit="mmol P/m^3*m/s" default_value="0.000E+00" />
+  <field id="N1__surface_albedo" long_name="phosphate albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="N1__surface_drag_coefficient_in_air" long_name="phosphate surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="N3_w_bot" long_name="nitrate near-bed vertical velocity" unit="m/s" default_value="-.200E+21" />
+  <field id="N3_n_sfl" long_name="nitrate nitrogen surface flux" unit="mmol N/m^3*m/s" default_value="0.000E+00" />
+  <field id="N3_n_bfl" long_name="nitrate nitrogen bottom flux" unit="mmol N/m^3*m/s" default_value="0.000E+00" />
+  <field id="N3__surface_albedo" long_name="nitrate albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="N3__surface_drag_coefficient_in_air" long_name="nitrate surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="N4_w_bot" long_name="ammonium near-bed vertical velocity" unit="m/s" default_value="-.200E+21" />
+  <field id="N4_n_sfl" long_name="ammonium nitrogen surface flux" unit="mmol N/m^3*m/s" default_value="0.000E+00" />
+  <field id="N4_n_bfl" long_name="ammonium nitrogen bottom flux" unit="mmol N/m^3*m/s" default_value="0.000E+00" />
+  <field id="N4__surface_albedo" long_name="ammonium albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="N4__surface_drag_coefficient_in_air" long_name="ammonium surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="N5_w_bot" long_name="silicate near-bed vertical velocity" unit="m/s" default_value="-.200E+21" />
+  <field id="N5_s_sfl" long_name="silicate silicate surface flux" unit="mmol Si/m^3*m/s" default_value="0.000E+00" />
+  <field id="N5_s_bfl" long_name="silicate silicate bottom flux" unit="mmol Si/m^3*m/s" default_value="0.000E+00" />
+  <field id="N5__surface_albedo" long_name="silicate albedo contribution computed by get_albedo" unit="-" default_value="0.000E+00" />
+  <field id="N5__surface_drag_coefficient_in_air" long_name="silicate surface drag contribution computed by get_drag" unit="-" default_value="0.000E+00" />
+  <field id="zero_hz" long_name="zero_hz" unit="" default_value="0.000E+00" />
+  <field id="surface_albedo_calculator_result" long_name="surface_albedo_calculator result" unit="1" default_value="-.200E+21" />
+  <field id="surface_drag_coefficient_in_air_calculator_result" long_name="surface_drag_coefficient_in_air_calculator result" unit="1" default_value="-.200E+21" />
+  <field id="zero_sfl_tot" long_name="zero_sfl_tot" unit="" default_value="0.000E+00" />
+  <field id="zero_bfl_tot" long_name="zero_bfl_tot" unit="" default_value="0.000E+00" />
+  <field id="zero_hz_sms_tot" long_name="zero_hz_sms_tot" unit="" default_value="0.000E+00" />
+  <field id="light_ADY_VINT" long_name="depth-integrated light gelbstoff absorption" unit="1/m*m" default_value="0.0" />
+  <field id="N1_p_VINT" long_name="depth-integrated phosphate phosphorus" unit="mmol P/m^3*m" default_value="0.0" />
+  <field id="N3_n_VINT" long_name="depth-integrated nitrate nitrogen" unit="mmol N/m^3*m" default_value="0.0" />
+  <field id="N4_n_VINT" long_name="depth-integrated ammonium nitrogen" unit="mmol N/m^3*m" default_value="0.0" />
+  <field id="N5_s_VINT" long_name="depth-integrated silicate silicate" unit="mmol Si/m^3*m" default_value="0.0" />
+  <field id="zenithAngle__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated zenithAngle light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="light_ADY_sms_VINT" long_name="depth-integrated light gelbstoff absorption sources-sinks" unit="1/m/s*m" default_value="0.0" />
+  <field id="light_ADY_w_VINT" long_name="depth-integrated light gelbstoff absorption vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="light_EIR_VINT" long_name="depth-integrated light shortwave radiation" unit="W/m^2*m" default_value="0.0" />
+  <field id="light_parEIR_VINT" long_name="depth-integrated light photosynthetically active radiation" unit="W/m^2*m" default_value="0.0" />
+  <field id="light_xEPS_VINT" long_name="depth-integrated light attenuation coefficient of shortwave flux" unit="1/m*m" default_value="0.0" />
+  <field id="light_secchi_VINT" long_name="depth-integrated light Secchi depth (1.7/Kd)" unit="m*m" default_value="0.0" />
+  <field id="light_iopABS_VINT" long_name="depth-integrated light absorption coefficient of shortwave flux" unit="1/m*m" default_value="0.0" />
+  <field id="light_iopBBS_VINT" long_name="depth-integrated light backscatter coefficient of shortwave flux" unit="1/m*m" default_value="0.0" />
+  <field id="light__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated light light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="N1_p_sms_VINT" long_name="depth-integrated phosphate phosphorus sources-sinks" unit="mmol P/m^3/s*m" default_value="0.0" />
+  <field id="N1_p_w_VINT" long_name="depth-integrated phosphate phosphorus vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="N1__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated phosphate light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="N3_n_sms_VINT" long_name="depth-integrated nitrate nitrogen sources-sinks" unit="mmol N/m^3/s*m" default_value="0.0" />
+  <field id="N3_n_w_VINT" long_name="depth-integrated nitrate nitrogen vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="N3__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated nitrate light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="N4_n_sms_VINT" long_name="depth-integrated ammonium nitrogen sources-sinks" unit="mmol N/m^3/s*m" default_value="0.0" />
+  <field id="N4_n_w_VINT" long_name="depth-integrated ammonium nitrogen vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="N4__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated ammonium light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="N5_s_sms_VINT" long_name="depth-integrated silicate silicate sources-sinks" unit="mmol Si/m^3/s*m" default_value="0.0" />
+  <field id="N5_s_w_VINT" long_name="depth-integrated silicate silicate vertical velocity" unit="m/s*m" default_value="0.0" />
+  <field id="N5__attenuation_coefficient_of_photosynthetic_radiative_flux_VINT" long_name="depth-integrated silicate light extinction contribution computed by get_light_extinction" unit="m-1*m" default_value="0.0" />
+  <field id="zero_VINT" long_name="depth-integrated zero" unit="*m" default_value="0.0" />
+  <field id="attenuation_coefficient_of_photosynthetic_radiative_flux_calculator_result_VINT" long_name="depth-integrated attenuation_coefficient_of_photosynthetic_radiative_flux_calculator result" unit="m-1*m" default_value="0.0" />
+  <field id="total_nitrogen_calculator_result_VINT" long_name="depth-integrated total_nitrogen_calculator result" unit="mmol m-3*m" default_value="0.0" />
+  <field id="particulate_organic_backscatter_coefficient_VINT" long_name="depth-integrated particulate_organic_backscatter_coefficient" unit="1/m*m" default_value="0.0" />
+  <field id="particulate_organic_absorption_coefficient_VINT" long_name="depth-integrated particulate_organic_absorption_coefficient" unit="1/m*m" default_value="0.0" />
+  <field id="zero_sms_tot_VINT" long_name="depth-integrated zero_sms_tot" unit="*m" default_value="0.0" />
+  <field id="zero_w_tot_VINT" long_name="depth-integrated zero_w_tot" unit="*m" default_value="0.0" />
+ </field_group>
+ <field_group id="fabm_scalar" grid_ref="grid_0">
+  <field id="total_silicate" long_name="total_silicate" unit="mmol m-3" default_value="-.200E+21" />
+  <field id="total_nitrogen" long_name="total_nitrogen" unit="mmol m-3" default_value="-.200E+21" />
+  <field id="total_phosphorus" long_name="total_phosphorus" unit="mmol m-3" default_value="-.200E+21" />
+ </field_group>
+ <field_group id="fabm_input" grid_ref="grid_T_2D">
+ </field_group>
+</field_definition>

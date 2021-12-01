@@ -1,0 +1,46 @@
+check_conservation: false
+require_initialization: true
+instances:
+  zenithAngle:
+    model: ersem/zenith_angle
+  light:
+    model: ersem/light_iop_ady
+    parameters:
+      a0w: 0.03                                            # absorption coefficient of clear water (1/m), default = 0.036
+      b0w: 0.0015                                          # backscatter coefficient of clear water (1/m), default = 0.0016
+      pEIR_eow: 0.5                                        # photosynthetically active fraction of shortwave radiation (-), default = 0.5
+      relax: 0.143                                         # relaxation towards satellite gelbstoff absorption (1/d), default=0.033
+    initialization:
+      ADY: 0.05
+  N1:
+    long_name: phosphate
+    model: ersem/pelagic_base
+    parameters:
+      composition: p                                       # elemental composition
+      c0: 0.001                                            # background carbon concentration (mg C/m^3), default = 0.0
+    initialization:
+      p: 0.4                                               # phosphorus (mmol P/m^3)
+  N3:
+    long_name: nitrate
+    model: ersem/pelagic_base
+    parameters:
+      composition: n                                       # elemental composition
+      c0: 0.001                                            # background carbon concentration (mg C/m^3), default = 0.0
+    initialization:
+      n: 8.0                                               # nitrogen (mmol N/m^3)
+  N4:
+    long_name: ammonium
+    model: ersem/pelagic_base
+    parameters:
+      composition: n                                       # elemental composition
+      c0: 0.001                                            # background carbon concentration (mg C/m^3), default = 0.0
+    initialization:
+      n: 0.1                                               # nitrogen (mmol N/m^3)
+  N5:
+    long_name: silicate
+    model: ersem/pelagic_base
+    parameters:
+      composition: s                                       # elemental composition
+      s0: 0.0003                                           # background silicon concentration (mmol Si/m^3), default = 0.0
+    initialization:
+      s: 4.5                                               # silicate (mmol Si/m^3)

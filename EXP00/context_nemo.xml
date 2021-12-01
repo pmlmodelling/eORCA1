@@ -21,6 +21,7 @@
 <!-- Fields definition -->
     <field_definition src="./field_def_nemo-oce.xml"/>    <!--  NEMO ocean dynamics     -->
     <field_definition src="./field_def_nemo-ice.xml"/>    <!--  NEMO sea-ice model      -->
+    <field_definition src="./field_def_fabm.xml"/>   <!--  NEMO ocean dynamics          -->
 
 <!-- Files definition -->
     <file_definition src="./file_def_nemo-oce.xml"/>     <!--  NEMO ocean dynamics      -->

@@ -589,6 +589,12 @@
 !!======================================================================
 !
 !-----------------------------------------------------------------------
+&namptr        !   Poleward Transport Diagnostic                        (default: OFF)
+!-----------------------------------------------------------------------
+   ln_diaptr   = .false.   !  Poleward heat and salt transport (T) or not (F)
+   ln_subbas   = .false.   !  Atlantic/Pacific/Indian basins computation (T) or not
+/
+!-----------------------------------------------------------------------
 &namnc4        !   netcdf4 chunking and compression settings            ("key_netcdf4")
 !-----------------------------------------------------------------------
 /
@@ -609,6 +615,12 @@
 !-----------------------------------------------------------------------
 &nam_diaharm   !   Harmonic analysis of tidal constituents ('key_diaharm')
 !-----------------------------------------------------------------------
+   ln_diaharm = .false.   ! Choose tidal harmonic output or not
+      nit000_han = 1      !    First time step used for harmonic analysis
+      nitend_han = 75     !    Last time step used for harmonic analysis
+      nstep_han  = 15     !    Time step frequency for harmonic analysis
+      tname(1)   = 'M2'   !    Name of tidal constituents
+      tname(2)   = 'K1'   !              ---
 /
 !-----------------------------------------------------------------------
 &namdct        ! transports through sections

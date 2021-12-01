@@ -64,9 +64,14 @@ if [ ! -d "$WORK_DIR" ]; then
 fi
 cd $WORK_DIR
 
+# clean old stuff
+# COMMENTED BCS TODAY 28 OCT I CANNOT CLONE FROM ARCHER2:
+rm -rf $WORK_DIR/*
+
 echo "Making sure that the correct modules are loaded"
 
-module -s restore $REPO_DIR/scripts/env/ucx_env
+module purge
+source $REPO_DIR/scripts/env/ucx_env
 
 # Currently running 4.0.4
 NEMO_VER=4.0.4
@@ -74,24 +79,9 @@ NEMO_VER=4.0.4
 # Checkout the NEMO code from the SVN Paris repository 
 echo "Checking out NEMO repository"
 
-svn co http://forge.ipsl.jussieu.fr/nemo/svn/NEMO/releases/r4.0/r$NEMO_VER --depth empty nemo
-svn co http://forge.ipsl.jussieu.fr/nemo/svn/NEMO/releases/r4.0/r$NEMO_VER/src --depth infinity nemo/src
-svn co http://forge.ipsl.jussieu.fr/nemo/svn/NEMO/releases/r4.0/r$NEMO_VER/cfgs/SHARED nemo/cfgs/SHARED
-svn export http://forge.ipsl.jussieu.fr/nemo/svn/NEMO/releases/r4.0/r$NEMO_VER/cfgs/ref_cfgs.txt nemo/cfgs/ref_cfgs.txt
+git clone https://gitlab.ecosystem-modelling.pml.ac.uk/gle/nemo404.git nemo
 
 cd nemo
-
-# Now check EXTERNALS revision number before checking out the rest
-for ext_name in mk FCM IOIPSL   
-  do   
-  ext=`svn propget svn:externals | grep $ext_name | cut -c2-`   
-  svn co http://forge.ipsl.jussieu.fr/nemo/svn/$ext
-done
-
-ext=`svn propget svn:externals | grep makenemo | cut -c2-`
-svn export http://forge.ipsl.jussieu.fr/nemo/svn/$ext
-
-mkdir arch
 
 # Setup the directory structure for the ENSEMBLE
 mkdir $WORK_DIR/nemo/cfgs/eORCA1
@@ -104,21 +94,32 @@ if [ ! -d "$XIOS_DIR" ]; then
   mkdir $XIOS_DIR
 fi
 cd $XIOS_DIR
+
 echo $PWD
 echo "Checking out xios repository"
-svn co http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-2.5@1964 xios
+svn co http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-2.5 xios
 cd xios
 cp $REPO_DIR/arch/xios/* ./arch
+cp $WORK_DIR/../xios_arch/* ./arch
 echo "Compiling xios"
-./make_xios --full --prod --arch archer2 --netcdf_lib netcdf4_par --job 4
+#./make_xios --full --prod --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
+./make_xios --full --debug --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
 # Dirty fix here as xios has to unpack before we can edit
 sed -e "s/FC_MODSEARCH => '',  /FC_MODSEARCH => '-J',/" tools/FCM/lib/Fcm/Config.pm > tmp_file
 mv tmp_file tools/FCM/lib/Fcm/Config.pm
 # Try once more
-./make_xios --full --prod --arch archer2 --netcdf_lib netcdf4_par --job 4
+#./make_xios --full --prod --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
+./make_xios --full --debug --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
 
 # Let's update the path to xios
 export XIOS_DIR=$XIOS_DIR/xios
+export XIOS_HOME=$XIOS_DIR
+
+
+#build fabm-ersem
+MODE=nemo-prod-ERSEM-edge
+
+export FABM_HOME=/home/n01/n01/gig/local/fabm/nemo
 
 cd $WORK_DIR/nemo
 cp $REPO_DIR/arch/nemo/* ./arch
@@ -126,7 +127,7 @@ cp $REPO_DIR/arch/nemo/* ./arch
 sed "s?XXX_XIOS_DIR_XXX?$XIOS_DIR?" ./arch/arch-archer2.fcm > tmp_arch
 mv tmp_arch ./arch/arch-archer2.fcm
 
-echo 'eORCA1 OCE ICE' >> $WORK_DIR/nemo/cfgs/work_cfgs.txt
+echo 'eORCA1 OCE TOP ICE' >> $WORK_DIR/nemo/cfgs/work_cfgs.txt
 
 mkdir cfgs/eORCA1/EXP00
 echo "Gathering forcing data"
@@ -154,6 +155,8 @@ mkdir INPUTS
 
 wget -r -nd -np -e robots=off -A '*.nc' http://gws-access.jasmin.ac.uk/public/jmmp_collab/eORCA1/ -P $CONFIG_DIR/INPUTS/
 
+cp /work/n01/n01/gig/eORCA1/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/ #dummy gelbstoff adsorption just to try it
+
 ln -s $XIOS_DIR/bin/xios_server.exe $CONFIG_DIR/EXP00/xios_server.exe
 
 cp $REPO_DIR/EXP00/* $CONFIG_DIR/EXP00/
@@ -166,8 +169,10 @@ mv tmp_file Config.pm
 
 cd $WORK_DIR/nemo
 
+cp $WORK_DIR/../ref_cfgs.txt $WORK_DIR/nemo/cfgs/ref_cfgs.txt
+
 echo "Compiling nemo eORCA1 Config"
-./makenemo -m archer2 -r eORCA1 -j 8
+./makenemo -m GCC_ARCHER2_DEBUG -r eORCA1 -j 8
 
 echo
 echo "  Auto-Config: eORCA1"
