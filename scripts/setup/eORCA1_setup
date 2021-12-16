@@ -6,11 +6,12 @@ display_usage() {
    echo "  Auto-Config: eORCA1 on ARCHER2"
    echo "  ***************************************"
    echo
-   echo "  usage: ${0##*/} -w path_to_install_nemo -x path_to_intall_xios -s path_to_repo"
+   echo "  usage: ${0##*/} -w path_to_install_nemo -x path_to_intall_xios -s path_to_repo -f path_to_fabm-ersem"
    echo
    echo "  flags:  -w full path to where nemo will be installed"
    echo "          -x full path to where xios will be installed"
    echo "          -s full path to where eORCA1 repository resides"
+   echo "          -f full path to where fabm-ersem was built"
    echo
    exit 1
 	} 
@@ -21,7 +22,7 @@ display_usage() {
 		exit 1
 	fi 
 # if less than two arguments supplied, display usage 
-	if [  $# -ge 7 ] 
+	if [  $# -ge 9 ] 
 	then 
 		display_usage
 		exit 1
@@ -40,6 +41,7 @@ while getopts w:x:s: option
   w) export WORK_DIR=${OPTARG};;
   x) export XIOS_DIR=${OPTARG};;
   s) export REPO_DIR=${OPTARG};;
+  f) export FABM_DIR=${OPTARG};;
   esac
 done
 
@@ -58,6 +60,11 @@ if [ ${REPO_DIR:0:1} != "/" ]; then
   exit 1
 fi
 
+if [ ${FABM_DIR:0:1} != "/" ]; then
+  echo "FABM_DIR must use full path"
+  exit 1
+fi
+
 # Change to some working directory of choice
 if [ ! -d "$WORK_DIR" ]; then
   mkdir $WORK_DIR
@@ -65,7 +72,6 @@ fi
 cd $WORK_DIR
 
 # clean old stuff
-# COMMENTED BCS TODAY 28 OCT I CANNOT CLONE FROM ARCHER2:
 rm -rf $WORK_DIR/*
 
 echo "Making sure that the correct modules are loaded"
@@ -116,10 +122,11 @@ export XIOS_DIR=$XIOS_DIR/xios
 export XIOS_HOME=$XIOS_DIR
 
 
-#build fabm-ersem
+#fabm-ersem must be built beforehand!
+# not sure this $MODE serves some purpose!
 MODE=nemo-prod-ERSEM-edge
 
-export FABM_HOME=/home/n01/n01/gig/local/fabm/nemo
+export FABM_HOME=$FABM_DIR
 
 cd $WORK_DIR/nemo
 cp $REPO_DIR/arch/nemo/* ./arch
@@ -155,7 +162,8 @@ mkdir INPUTS
 
 wget -r -nd -np -e robots=off -A '*.nc' http://gws-access.jasmin.ac.uk/public/jmmp_collab/eORCA1/ -P $CONFIG_DIR/INPUTS/
 
-cp /work/n01/n01/gig/eORCA1/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/ #dummy gelbstoff adsorption just to try it
+# NB, the test configuration needs a dummy gelbstoff_absorption input file
+cp /work/n01/n01/gig/eORCA1/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/
 
 ln -s $XIOS_DIR/bin/xios_server.exe $CONFIG_DIR/EXP00/xios_server.exe
 

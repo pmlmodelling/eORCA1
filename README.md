@@ -6,10 +6,19 @@ Standard extended ORCA1 configuration
 Configuration files for eORCA1
 
 ## Quick Start on ARCHER2:
+git clone https://github.com/fabm-model/fabm.git
+git clone git@gitlab.ecosystem-modelling.pml.ac.uk:edge/ersem.git
+# then build FABM-ERSEM into FABAMDIR (likely ~/local/fabm)
+# modules to be loaded for building on Archer2 are the same as in eORCA1/scripts/env/ucx_env
+# then adjust to your paths and run:
+cmake ~/git/fabm/src -DFABM_HOST=nemo -DFABM_ERSEM_BASE=~/git/ERSEM-edge/ -DFABM_EMBED_VERSION=ON -DFABM_INSTALL_PREFIX=~/local/fabm/nemo-prod-ERSEM-edge/lib -DCMAKE_Fortran_FLAGS:STRING="-O3"
+make install -j4
+
 
 ```
-git clone git@github.com:NOC-MSM/eORCA1.git
-./eORCA1/scripts/setup/eORCA1_setup -w $PWD/test -x $PWD/test -s $PWD/eORCA1
+git clone https://github.com/pmlmodelling/eORCA1.git
+git checkout eORCA1_FABM
+./eORCA1/scripts/setup/eORCA1_setup -w $PWD/test -x $PWD/test -s $PWD/eORCA1 -f $FABAMDIR
 cd test/nemo/cfgs/eORCA1/EXP00
 ```
 Edit the project code in  `runscript.slurm` then:
