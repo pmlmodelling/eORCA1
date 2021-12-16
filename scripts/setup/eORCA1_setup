@@ -34,7 +34,7 @@ display_usage() {
 		exit 0
 	fi 
 
-while getopts w:x:s: option
+while getopts w:x:s:f: option
   do
   case "${option}"
   in
