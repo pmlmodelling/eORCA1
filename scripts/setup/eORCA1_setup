@@ -76,6 +76,7 @@ rm -rf $WORK_DIR/*
 
 echo "Making sure that the correct modules are loaded"
 
+
 module purge
 source $REPO_DIR/scripts/env/ucx_env
 
@@ -124,7 +125,8 @@ export XIOS_HOME=$XIOS_DIR
 
 #fabm-ersem must be built beforehand!
 # not sure this $MODE serves some purpose!
-MODE=nemo-prod-ERSEM-edge
+#MODE=nemo-prod-ERSEM-edge
+MODE=nemo
 
 export FABM_HOME=$FABM_DIR
 
