@@ -1,6 +1,53 @@
 <?xml version="1.0"?>
 <simulation>
 
+    <!-- $id$ -->
+
+    <!--
+============================================================================================================
+=                                  definition of all existing variables                                    =
+=                                            DO NOT CHANGE                                                 =
+============================================================================================================
+    -->
+    <field_definition src="./field_def.xml"/>
+    <field_definition src="./field_def_fabm.xml"/>
+    <field_definition src="./field_def_custom.xml"/>
+    <!--
+============================================================================================================
+=                                           output files definition                                        =
+=                                            Define your own files                                         =
+=                                         put the variables you want...                                    =
+============================================================================================================
+    -->
+
+  <context id="nemo" src="./context_nemo.xml" >
+<!--  <context id="nemo" src="./context_nemo.xml" time_origin="1950-01-01 00:00:00" > -->
+
+    <file_definition type="one_file" name="@expname@_@freq@_@startdate@_@enddate@" sync_freq="10d" min_digits="4">
+      <file_group id="1d" output_freq="1d"  output_level="10" enabled=".TRUE." > <!-- 1d files -->
+        <file id="file59" name_suffix="_ptrc_T" description="tracer variables"  sync_freq="1d">
+          <field field_ref="N1_p" operation="average" />
+          <field field_ref="N3_n" operation="average" />
+	  <field field_ref="N4_n" operation="average" />
+	  <field field_ref="O3_c" operation="average" />
+	  <field field_ref="O2_o" operation="average" />
+	  <field field_ref="P1_c" operation="average" />
+	  <field field_ref="P2_c" operation="average" />
+	  <field field_ref="P3_c" operation="average" />
+	  <field field_ref="B1_c" operation="average" />
+	  <field field_ref="e3t"  operation="average" />
+        </file>
+
+	<file id="file60" name_suffix="_grid_T" description="tracer variables"  sync_freq="1d">
+          <field field_ref="toce" name="votemper"        operation="average"      long_name="sea_water_potential_temperature" />
+	  <field field_ref="soce" name="vosaline"        operation="average"      long_name="sea_water_salinity" />               
+	</file>
+
+      </file_group>
+
+    </file_definition>
+  </context>
+
 <!-- ============================================================================================ -->
 <!-- XIOS context                                                                                 -->
 <!-- ============================================================================================ -->
@@ -21,6 +68,6 @@
 <!-- NEMO  CONTEXT add and suppress the components you need                                       -->
 <!-- ============================================================================================ -->
 
-  <context id="nemo" src="./context_nemo.xml"/>       <!--  NEMO       -->
+<!--  <context id="nemo" src="./context_nemo.xml"/>        -->
 
 </simulation>

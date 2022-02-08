@@ -10,8 +10,9 @@
        nn_it000=1
        nn_itend=992
        nn_stock=992
-       !nn_itend=96
-       !nn_stock=96
+       ln_rstart   =   .false.
+       cn_ocerst_in   = "restart"   !  suffix of ocean restart name (input)
+       cn_ocerst_indir   = "./INPUTS"   !  directory of ocean restart name (input)
 /
 !
 !!======================================================================
@@ -565,9 +566,11 @@
 !-----------------------------------------------------------------------
 &nammpp        !   Massively Parallel Processing                        ("key_mpp_mpi)
 !-----------------------------------------------------------------------
+   ln_listonly =  .false.  !  do nothing else than listing the best domain decompositions (with land domains suppression)
+   !                       !  if T: the largest number of cores tested is defined by max(mppsize, jpni*jpnj)
    ln_nnogather=  .true.   !
-    jpni        = 9
-    jpnj        = 5
+    jpni        = 15 !9
+    jpnj        = 15 !5
 /
 !-----------------------------------------------------------------------
 &namctl        !   Control prints & Benchmark

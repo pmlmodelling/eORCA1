@@ -4,3 +4,7 @@
    name='gelbstoff_absorption_satellite'
    sn=         'INPUTS/gelbstoff_absorption_satellite',-1,            'gelbstoff_absorption_satellite', .false.,  .false.,   'yearly',     'INPUTS/weights_coreII_2_eorca1_bilinear.nc',         '',        ''
 /
+&variable
+   name='mole_fraction_of_carbon_dioxide_in_air'
+   sn=         'INPUTS/pCO2a',-1,            'pCO2a', .false.,  .false.,   'yearly',     'INPUTS/weights_coreII_2_eorca1_bilinear.nc',         '',        ''
+/
