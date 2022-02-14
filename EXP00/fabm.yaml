@@ -44,6 +44,14 @@ instances:
       s0: 0.0003                                           # background silicon concentration (mmol Si/m^3), default = 0.0
     initialization:
       s: 4.5                                               # silicate (mmol Si/m^3)
+  N7:
+    long_name: bioavailable iron
+    model: ersem/pelagic_base
+    parameters:
+      composition: f                                       # elemental composition
+      c0: 0.001                                           # background iron concentration (umol Fe/m^3), default = 0.0
+    initialization:
+      f: 5.0                                               # iron (umol Fe/m^3) NB is umol, not mmol!
   O2:
     long_name: oxygen
     model: ersem/oxygen
@@ -94,15 +102,17 @@ instances:
     parameters:
       composition: cnpf                                    # elemental composition
       rm: 1.0                                              # sinking velocity (m/d), default = 0.0
-      ndeposition: 2                                           # number of target pools where the sedimentation flux goes (-)
+      ndeposition: 2                                       # number of target pools where the sedimentation flux goes (-)
       qxc2: 0.1
       qxn2: 0.1
       qxp2: 0.06
+      qxf2: 0.0                                            # fraction of iron sinking into deposition target 2 (-)
       c0: 0.0033                                           # background carbon concentration (mg C/m^3), default = 0.0
     initialization:
       c: 7.2                                               # carbon (mg C/m^3)
       n: 0.1                                               # nitrogen (mmol N/m^3)
       p: 0.007                                             # phosphorus (mmol P/m^3)
+      f: 0.0036                                            # iron (umol Fe/m^3)
     coupling:
       deposition_target1: Q6/surface
       deposition_target2: Q7/surface
@@ -112,17 +122,19 @@ instances:
     parameters:
       composition: cnpsf                                   # elemental composition
       rm: 5.0                                              # sinking velocity (m/d), default = 0.0
-      ndeposition: 2                                           # number of target pools where the sedimentation flux goes (-)
+      ndeposition: 2                                       # number of target pools where the sedimentation flux goes (-)
       qxc2: 0.1
       qxn2: 0.1
       qxp2: 0.06
       qxs2: 0.0
+      qxf2: 0.0                                            # fraction of iron sinking into deposition target 2 (-)
       c0: 0.0033                                           # background carbon concentration (mg C/m^3), default = 0.0
     initialization:
       c: 17.0                                              # carbon (mg C/m^3)
       n: 0.24                                              # nitrogen (mmol N/m^3)
       p: 0.02                                              # phosphorus (mmol P/m^3)
       s: 0.1                                               # silicate (mmol Si/m^3)
+      f: 0.0085                                            # iron (umol Fe/m^3) 
     coupling:
       deposition_target1: Q6/surface
       deposition_target2: Q7/surface
@@ -168,10 +180,12 @@ instances:
       n: 3.5                                               # nitrogen (mmol N/m^2)
       p: 0.5                                               # phosphorus (mmol P/m^2)
       s: 149.0                                             # silicate (mmol Si/m^2)
+      f: 1.695                                             # iron (umol Fe/m^3)
       pen_depth_c: 0.0173                                  # penetration depth of carbon (m)
       pen_depth_n: 0.02                                    # penetration depth of nitrogen (m)
       pen_depth_p: 0.025                                   # penetration depth of phosphorus (m)
       pen_depth_s: 0.0313                                  # penetration depth of silicate (m)
+      pen_depth_f: 0.0313                                  # penetration depth of iron (m) INVENTED VALUE!!!!!!!!!!!!!!!!!!
     coupling:
       RP: R6
   Q7:
@@ -238,6 +252,7 @@ instances:
       RP3: R8
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
+      N7f: N7/f                                            # iron (umol Fe/m^3)
       R1c: R1/c                                            # labile dissolved organic carbon (mg C/m^3)
       R1p: R1/p                                            # labile dissolved organic phosphorus (mmol P/m^3)
       R1n: R1/n                                            # labile dissolved organic nitrogen (mmol N/m^3)
@@ -269,6 +284,8 @@ instances:
       pu_ra: 0.2                                           # respired fraction of primary production (-)
       qnlc: 0.0042                                         # minimum nitrogen to carbon ratio (mmol N/mg C)
       qplc: 0.0001                                         # minimum phosphorus to carbon ratio (mmol P/mg C)
+      qflc: 0.00005                                        # minimum iron to carbon ratio (umol Fe/mg C)
+      qfRc: 0.0005                                         # maximum iron to carbon ratio (umol Fe/mg C)
       xqcp: 1.0                                            # threshold for phosphorus limitation (relative to Redfield ratio) (-)
       xqcn: 1.0                                            # threshold for nitrogen limitation (relative to Redfield ratio) (-)
       xqp: 2.0                                             # maximum phosphorus to carbon ratio (relative to Redfield ratio) (-)
@@ -276,6 +293,7 @@ instances:
       qun3: 0.0025                                         # nitrate affinity (m^3/mg C/d)
       qun4: 0.0025                                         # ammonium affinity (m^3/mg C/d)
       qurp: 0.003                                          # phosphate affinity (m^3/mg C/d)
+      qurf: 0.0003                                         # iron affinity (m^3/mg C/d)
       snplux: 1.0                                          # specific tendency of luxury uptake of nutrients towards maximum quota (1/d), default = 1.0
       use_Si: true                                         # use silicate, default = false
       qsc: 0.0118                                          # maximum silicate to carbon ratio (mmol Si/mg C)
@@ -303,11 +321,14 @@ instances:
       qxp3: 0.003                                          # fraction of phosphorus sinking into deposition target 3 (-)
       qxs2: 0.0                                            # fraction of silicate sinking into deposition target 2 (-)
       qxs3: 0.0                                            # fraction of silicate sinking into deposition target 3 (-)
+      qxf2: 0.0                                            # fraction of iron sinking into deposition target 2 (-)
+      qxf3: 0.0                                            # fraction of iron sinking into deposition target 3 (-)
     initialization:
       c: 8.0                                               # carbon (mg C/m^3)
       n: 0.1114                                            # nitrogen (mmol N/m^3)
       p: 0.009                                             # phosphorus (mmol P/m^3)
       s: 0.128                                             # silicate (mmol Si/m^3)
+      f: 0.004                                             # iron (umol Fe/m^3)
       Chl: 0.4                                             # chlorophyll a (mg/m^3)
     coupling:
       RP: R6
@@ -318,6 +339,7 @@ instances:
       N3n: N3/n                                            # nitrate (mmol N/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
       N5s: N5/s                                            # silicate (mmol Si/m^3)
+      N7f: N7/f                                            # iron (umol Fe/m^3)
       R1c: R1/c                                            # dissolved organic carbon (mg C/m^3)
       R1p: R1/p                                            # dissolved organic phosphorus (mmol P/m^3)
       R1n: R1/n                                            # dissolved organic nitrogen (mmol N/m^3)
@@ -335,6 +357,8 @@ instances:
       pu_ra: 0.2                                           # respired fraction of primary production (-)
       qnlc: 0.005                                          # minimum nitrogen to carbon ratio (mmol N/mg C)
       qplc: 0.000225                                       # minimum phosphorus to carbon ratio (mmol P/mg C)
+      qflc: 0.0001                                         # minimum iron to carbon ratio (micromol Fe/mg C)
+      qfRc: 0.0003                                         # maximum iron to carbon ratio (micromol Fe/mg C)
       xqcp: 1.0                                            # threshold for phosphorus limitation (relative to Redfield ratio) (-)
       xqcn: 1.0                                            # threshold for nitrogen limitation (relative to Redfield ratio) (-)
       xqp: 2.0                                             # maximum phosphorus to carbon ratio (relative to Redfield ratio) (-)
@@ -342,6 +366,7 @@ instances:
       qun3: 0.004                                          # nitrate affinity (m^3/mg C/d)
       qun4: 0.004                                          # ammonium affinity (m^3/mg C/d)
       qurp: 0.004                                          # phosphate affinity (m^3/mg C/d)
+      qurf: 0.0004                                         # iron affinity (m^3/mg C/d)
       snplux: 1.0                                          # specific tendency of luxury uptake of nutrients towards maximum quota (1/d), default = 1.0
       use_Si: false                                        # use silicate, default = false
       sdo: 0.05                                            # 1.1 of minimal specific lysis rate (1/d)
@@ -366,10 +391,13 @@ instances:
       qxn3: 0.05                                           # fraction of nitrogen sinking into deposition target 3 (-)
       qxp2: 0.6                                            # fraction of phosphorus sinking into deposition target 2 (-)
       qxp3: 0.03                                           # fraction of phosphorus sinking into deposition target 3 (-)
+      qxf2: 0.0                                            # fraction of iron sinking into deposition target 2 (-)
+      qxf3: 0.0                                            # fraction of iron sinking into deposition target 3 (-)
     initialization:
       c: 5.9                                               # carbon (mg C/m^3)
       n: 0.0926                                            # nitrogen (mmol N/m^3)
       p: 0.0036                                            # phosphorus (mmol P/m^3)
+      f: 0.00295                                           # iron (micromol Fe/m^3)
       Chl: 0.3                                             # chlorophyll a (mg/m^3)
     coupling:
       RP: R4
@@ -379,6 +407,7 @@ instances:
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N3n: N3/n                                            # nitrate (mmol N/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
+      N7f: N7/f                                            # iron (micromol Fe/m^3)
       R1c: R1/c                                            # dissolved organic carbon (mg C/m^3)
       R1p: R1/p                                            # dissolved organic phosphorus (mmol P/m^3)
       R1n: R1/n                                            # dissolved organic nitrogen (mmol N/m^3)
@@ -397,6 +426,8 @@ instances:
       pu_ea: 0.2                                           # excreted fraction of primary production (-)
       pu_ra: 0.2                                           # respired fraction of primary production (-)
       qnlc: 0.006                                          # minimum nitrogen to carbon ratio (mmol N/mg C)
+      qflc: 0.00015                                        # minimum iron to carbon ratio (micromol Fe/mg C)
+      qfRc: 0.0005                                         # maximum iron to carbon ratio (micromol Fe/mg C)
       qplc: 0.00035                                        # minimum phosphorus to carbon ratio (mmol P/mg C)
       xqcp: 1.0                                            # threshold for phosphorus limitation (relative to Redfield ratio) (-)
       xqcn: 1.0                                            # threshold for nitrogen limitation (relative to Redfield ratio) (-)
@@ -405,6 +436,7 @@ instances:
       qun3: 0.006                                          # nitrate affinity (m^3/mg C/d)
       qun4: 0.007                                          # ammonium affinity (m^3/mg C/d)
       qurp: 0.006                                          # phosphate affinity (m^3/mg C/d)
+      qurf: 0.0006                                         # iron affinity (m^3/mg C/d)
       snplux: 1.0                                          # specific tendency of luxuary uptake of nutrients towards maximum quoata (1/d)
       use_Si: false                                        # use silicate, default = false
       sdo: 0.055                                           # 1.1 of minimal specific lysis rate (1/d)
@@ -428,10 +460,13 @@ instances:
       qxn3: 0.05                                           # fraction of nitrogen sinking into deposition target 3 (-)
       qxp2: 0.6                                            # fraction of phosphorus sinking into deposition target 2 (-)
       qxp3: 0.03                                           # fraction of phosphorus sinking into deposition target 3 (-)
+      qxf2: 0.0                                            # fraction of iron sinking into deposition target 2 (-)
+      qxf3: 0.0                                            # fraction of iron sinking into deposition target 3 (-)
     initialization:
       c: 5.9                                               # carbon (mg C/m^3)
       n: 0.0926                                            # nitrogen (mmol N/m^3)
       p: 0.0036                                            # phosphorus (mmol P/m^3)
+      f: 0.00295                                           # iron (micromol Fe/m^3)
       Chl: 0.3                                             # chlorophyll a (mg/m^3)
     coupling:
       RP: R4
@@ -441,6 +476,7 @@ instances:
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N3n: N3/n                                            # nitrate (mmol N/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
+      N7f: N7/f                                            # iron (micromol Fe/m^3)
       R1c: R1/c                                            # dissolved organic carbon (mg C/m^3)
       R1p: R1/p                                            # dissolved organic phosphorus (mmol P/m^3)
       R1n: R1/n                                            # dissolved organic nitrogen (mmol N/m^3)
@@ -458,6 +494,8 @@ instances:
       pu_ra: 0.2                                           # respired fraction of primary production (-)
       qnlc: 0.0042                                         # minimum nitrogen to carbon ratio (mmol N/mg C)
       qplc: 0.0001                                         # minimum phosphorus to carbon ratio (mmol P/mg C)
+      qflc: 0.00005                                        # minimum iron to carbon ratio (micromol Fe/mg C)
+      qfRc: 0.0005                                         # maximum iron to carbon ratio (micromol Fe/mg C)
       xqcp: 1.0                                            # threshold for phosphorus limitation (relative to Redfield ratio) (-)
       xqcn: 1.0                                            # threshold for nitrogen limitation (relative to Redfield ratio) (-)
       xqp: 2.7                                             # maximum phosphorus to carbon ratio (relative to Redfield ratio) (-)
@@ -465,6 +503,7 @@ instances:
       qun3: 0.002                                          # nitrate affinity (m^3/mg C/d)
       qun4: 0.002                                          # ammonium affinity (m^3/mg C/d)
       qurp: 0.002                                          # phosphate affinity (m^3/mg C/d)
+      qurf: 0.0002                                         # iron affinity (m^3/mg C/d)
       snplux: 1.0                                          # specific tendency of luxuary uptake of nutrients towards maximum quoata (1/d)
       use_Si: false                                        # use silicate, default = false
       sdo: 0.045                                           # 1.1 of minimal specific lysis rate (1/d)
@@ -488,10 +527,13 @@ instances:
       qxn3: 0.05                                           # fraction of nitrogen sinking into deposition target 3 (-)
       qxp2: 0.6                                            # fraction of phosphorus sinking into deposition target 2 (-)
       qxp3: 0.03                                           # fraction of phosphorus sinking into deposition target 3 (-)
+      qxf2: 0.0                                           # fraction of iron sinking into deposition target 2 (-)
+      qxf3: 0.0                                           # fraction of iron sinking into deposition target 3 (-)
     initialization:
       c: 5.9                                               # carbon (mg C/m^3)
       n: 0.0926                                            # nitrogen (mmol N/m^3)
       p: 0.0036                                            # phosphorus (mmol P/m^3)
+      f: 0.00295                                           # iron (micromol Fe/m^3)
       Chl: 0.3                                             # chlorophyll a (mg/m^3)
     coupling:
       RP: R6
@@ -501,6 +543,7 @@ instances:
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N3n: N3/n                                            # nitrate (mmol N/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
+      N7f: N7/f                                            # iron (micromol Fe/m^3)
       R1c: R1/c                                            # dissolved organic carbon (mg C/m^3)
       R1p: R1/p                                            # dissolved organic phosphorus (mmol P/m^3)
       R1n: R1/n                                            # dissolved organic nitrogen (mmol N/m^3)
@@ -557,6 +600,11 @@ instances:
       prey7: Z6
       prey8: B1
       prey9: R6
+      prey1f_sink: R6/f                                    # sink for iron of prey 1
+      prey2f_sink: R4/f                                    # sink for iron of prey 2
+      prey3f_sink: R4/f                                    # sink for iron of prey 3
+      prey4f_sink: R6/f                                    # sink for iron of prey 4
+      prey9f_sink: N7/f                                    # sink for iron of prey 9
       RP: R8
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
@@ -612,6 +660,10 @@ instances:
       prey5: P4
       prey6: Z5
       prey7: Z6
+      prey2f_sink: R6/f                                    # sink for iron of prey 2
+      prey3f_sink: R4/f                                    # sink for iron of prey 3
+      prey4f_sink: R4/f                                    # sink for iron of prey 4
+      prey5f_sink: R6/f                                    # sink for iron of prey 5
       RP: R6
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
@@ -661,6 +713,8 @@ instances:
       prey2: P2
       prey3: P3
       prey4: Z6
+      prey2f_sink: R4/f                                    # sink for iron of prey 2
+      prey3f_sink: R4/f                                    # sink for iron of prey 3
       RP: R4
       N1p: N1/p                                            # phosphate (mmol P/m^3)
       N4n: N4/n                                            # ammonium (mmol N/m^3)
@@ -774,6 +828,16 @@ instances:
       s: 20.1                                              # silicate (mmol/m^2)
     coupling:
       s_pel: N5/s                                          # pelagic silicate (mmol/m^3)
+  K7:
+    long_name: benthic iron
+    model: ersem/benthic_column_dissolved_matter
+    parameters:
+      composition: f                                       # composition (any combination of c,n,p,s,f,o,a)
+      c0: 9.e-05                                           # background concentration (ug Fe/m^2)
+    initialization:
+      f: 20.1                                              # iron (umol/m^2)
+    coupling:
+      f_pel: N7/f                                          # pelagic iron (umol/m^3)
   G2:
     long_name: benthic oxygen
     model: ersem/benthic_column_dissolved_matter
@@ -820,6 +884,31 @@ instances:
       Q: Q6
       minimum_depth: ben_col/D1m                           # minimum depth (m)
       s_remin_target: K5/per_layer/s2                      # sink for remineralized silicate (mmol Si/m^2)
+  Q6f_aerobic:
+    long_name: aerobic particulate iron
+    model: ersem/benthic_column_particulate_matter_layer
+    parameters:
+      composition: f                                       # elemental composition
+      remin: 0.007                                         # remineralization rate (1/d), default = 0.0
+      minimum_depth: 0.0                                   # minimum depth (m), default = 0.0
+      variable_maximum_depth: true                         # maximum depth is variable, default = false
+    coupling:
+      Q: Q6
+      maximum_depth: ben_col/D1m                           # maximum depth (m)
+      f_remin_target: K7/per_layer/f1                      # sink for remineralized iron (umol Fe/m^2)
+  Q6f_anaerobic:
+    long_name: anaerobic particulate iron
+    model: ersem/benthic_column_particulate_matter_layer
+    parameters:
+      composition: f                                       # elemental composition
+      remin: 0.007                                         # remineralization rate (1/d), default = 0.0
+      variable_minimum_depth: true                         # minimum depth is variable, default = false
+      maximum_depth: 0.3                                   # maximum depth (m), default = 0.0
+      source_depth_distribution: 2                         # vertical distribution of changes (1: constant absolute rate, 2: constant relative rate, 3: constant carbon-based relative rate), default = 1
+    coupling:
+      Q: Q6
+      minimum_depth: ben_col/D1m                           # minimum depth (m)
+      f_remin_target: K7/per_layer/f2                      # sink for remineralized iron (umol Fe/m^2)
   ben_nit:
     long_name: benthic nitrogen cycle
     model: ersem/benthic_nitrogen_cycle
@@ -1173,6 +1262,10 @@ instances:
 #    model: external_surface_flux
 #    coupling:
 #      target: N4/n
+  N7_flux:
+    model: external_surface_flux
+    coupling:
+      target: N7/f
   erosion:
     model: ersem/benthic_erosion
   #Diagnostics:

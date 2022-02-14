@@ -165,7 +165,11 @@ mkdir INPUTS
 wget -r -nd -np -e robots=off -A '*.nc' http://gws-access.jasmin.ac.uk/public/jmmp_collab/eORCA1/ -P $CONFIG_DIR/INPUTS/
 
 # NB, the test configuration needs a dummy gelbstoff_absorption input file
-cp /work/n01/n01/gig/eORCA1/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/n01/gig/eORCA1/INPUTS/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/n01/gig/eORCA1/INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v1.nc $CONFIG_DIR/INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v1_y1958.nc
+cp /work/n01/n01/gig/eORCA1/INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v1.nc $CONFIG_DIR/INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v1_y1958.nc
+cp /work/n01/n01/gig/eORCA1/INPUTS/dust_orca_nM_eORCA1_v1.nc $CONFIG_DIR/INPUTS/dust_orca_nM_eORCA1_v1_y1958.nc
+cp /work/n01/n01/gig/eORCA1/INPUTS/pCO2a_y1958.nc $CONFIG_DIR/INPUTS/pCO2a_y1958.nc
 
 ln -s $XIOS_DIR/bin/xios_server.exe $CONFIG_DIR/EXP00/xios_server.exe
 

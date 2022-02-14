@@ -5,6 +5,7 @@
   <field id="N3_n" long_name="nitrate nitrogen" unit="mmol N/m^3" default_value="-.200E+21" />
   <field id="N4_n" long_name="ammonium nitrogen" unit="mmol N/m^3" default_value="-.200E+21" />
   <field id="N5_s" long_name="silicate silicate" unit="mmol Si/m^3" default_value="-.200E+21" />
+  <field id="N7_f" long_name="iron iron" unit="umol Fe/m^3" default_value="-.200E+21" />
  </field_group>
  <field_group id="sf_T" grid_ref="grid_T_2D">
  </field_group>
