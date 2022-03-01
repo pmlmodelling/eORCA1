@@ -107,7 +107,8 @@ echo "Checking out xios repository"
 svn co http://forge.ipsl.jussieu.fr/ioserver/svn/XIOS/branchs/xios-2.5 xios
 cd xios
 cp $REPO_DIR/arch/xios/* ./arch
-cp $WORK_DIR/../xios_arch/* ./arch
+#cp $REPO_DIR/xios_arch/* ./arch
+#cp $WORK_DIR/../xios_arch/* ./arch
 echo "Compiling xios"
 #./make_xios --full --prod --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
 ./make_xios --full --debug --arch GCC_ARCHER2 --netcdf_lib netcdf4_par --job 4
