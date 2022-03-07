@@ -86,9 +86,11 @@ NEMO_VER=4.0.4
 # Checkout the NEMO code from the SVN Paris repository 
 echo "Checking out NEMO repository"
 
-git clone https://gitlab.ecosystem-modelling.pml.ac.uk/gle/nemo404.git nemo
+#git clone https://gitlab.ecosystem-modelling.pml.ac.uk/gle/nemo404.git nemo
+git clone https://github.com/pmlmodelling/NEMO4.0-FABM nemo
 
 cd nemo
+rsync -aP /work/n01/n01/gig/eORCA1/trcice.F90 ./src/TOP/trcice.F90
 
 # Setup the directory structure for the ENSEMBLE
 mkdir $WORK_DIR/nemo/cfgs/eORCA1
@@ -165,12 +167,12 @@ mkdir INPUTS
 
 wget -r -nd -np -e robots=off -A '*.nc' http://gws-access.jasmin.ac.uk/public/jmmp_collab/eORCA1/ -P $CONFIG_DIR/INPUTS/
 
-# NB, the test configuration needs a dummy gelbstoff_absorption input file
-cp /work/n01/n01/gig/eORCA1/INPUTS/gelbstoff_absorption_satellite_y1958.nc $CONFIG_DIR/INPUTS/
-cp /work/n01/n01/gig/eORCA1/INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v1.nc $CONFIG_DIR/INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v1_y1958.nc
-cp /work/n01/n01/gig/eORCA1/INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v1.nc $CONFIG_DIR/INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v1_y1958.nc
-cp /work/n01/n01/gig/eORCA1/INPUTS/dust_orca_nM_eORCA1_v1.nc $CONFIG_DIR/INPUTS/dust_orca_nM_eORCA1_v1_y1958.nc
-cp /work/n01/n01/gig/eORCA1/INPUTS/pCO2a_y1958.nc $CONFIG_DIR/INPUTS/pCO2a_y1958.nc
+cp /work/n01/shared/gig/MA_PML_INPUTS/eORCA1-CCI-ady-broadband-climatology.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/shared/gig/MA_PML_INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v6.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/shared/gig/MA_PML_INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v3.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/shared/gig/MA_PML_INPUTS/dust_orca_nM_eORCA1_v1.nc $CONFIG_DIR/INPUTS/
+cp /work/n01/shared/gig/MA_dummy_inputs/pCO2a.nc $CONFIG_DIR/INPUTS/
+ln -s $CONFIG_DIR/INPUTS/* $CONFIG_DIR/EXP00/INPUTS/
 
 ln -s $XIOS_DIR/bin/xios_server.exe $CONFIG_DIR/EXP00/xios_server.exe
 
@@ -178,13 +180,15 @@ cp $REPO_DIR/EXP00/* $CONFIG_DIR/EXP00/
 cp -r $REPO_DIR/MY_SRC $CONFIG_DIR
 cp $REPO_DIR/cpp_eORCA1.fcm $CONFIG_DIR
 
+#cp /work/n01/n01/gig/eORCA1/RUNSCRIPT/MULTIMONTH/* $CONFIG_DIR/EXP00/
+
 cd $WORK_DIR/nemo/ext/FCM/lib/Fcm
 sed -e "s/FC_MODSEARCH => '',  /FC_MODSEARCH => '-J',/" Config.pm > tmp_file
 mv tmp_file Config.pm
 
 cd $WORK_DIR/nemo
 
-cp $WORK_DIR/../ref_cfgs.txt $WORK_DIR/nemo/cfgs/ref_cfgs.txt
+#cp $WORK_DIR/../ref_cfgs.txt $WORK_DIR/nemo/cfgs/ref_cfgs.txt
 
 echo "Compiling nemo eORCA1 Config"
 ./makenemo -m GCC_ARCHER2_DEBUG -r eORCA1 -j 8

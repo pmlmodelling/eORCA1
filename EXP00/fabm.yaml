@@ -1254,14 +1254,14 @@ instances:
       maximum_depth: 0.03                                  # maximum depth (m), default = 0.0
     coupling:
       Q: Q6
-#  N3_flux:
-#    model: external_surface_flux
-#    coupling:
-#      target: N3/n
-#  N4_flux:
-#    model: external_surface_flux
-#    coupling:
-#      target: N4/n
+  N3_flux:
+    model: external_surface_flux
+    coupling:
+      target: N3/n
+  N4_flux:
+    model: external_surface_flux
+    coupling:
+      target: N4/n
   N7_flux:
     model: external_surface_flux
     coupling:
