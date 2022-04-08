@@ -2,7 +2,7 @@
 !              !              !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename ! pairing  ! filename      !
 &variable
    name='gelbstoff_absorption_satellite'
-   sn=         'INPUTS/eORCA1-CCI-ady-broadband-climatology', -1, 'ady', .false.,  .true.,   'yearly',  '',  '', ''
+   sn=         'INPUTS/eORCA1-CCI-ady-broadband-climatology-1997-2020', -1, 'ady', .false.,  .true.,   'yearly',  '',  '', ''
 /
 &variable
    name='mole_fraction_of_carbon_dioxide_in_air'

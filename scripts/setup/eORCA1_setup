@@ -90,7 +90,7 @@ echo "Checking out NEMO repository"
 git clone https://github.com/pmlmodelling/NEMO4.0-FABM nemo
 
 cd nemo
-rsync -aP /work/n01/n01/gig/eORCA1/trcice.F90 ./src/TOP/trcice.F90
+#rsync -aP /work/n01/n01/gig/eORCA1/trcice.F90 ./src/TOP/trcice.F90
 
 # Setup the directory structure for the ENSEMBLE
 mkdir $WORK_DIR/nemo/cfgs/eORCA1
@@ -149,8 +149,8 @@ export CONFIG_DIR=$WORK_DIR/nemo/cfgs/eORCA1
 # Set up EXP00 for quick testing of the unforced case
 
 cd $CONFIG_DIR/EXP00
-ln -s ../../SHARED/namelist_ref namelist_ref
-ln -s ../../SHARED/namelist_ice_ref namelist_ice_ref
+#ln -s ../../SHARED/namelist_ref namelist_ref
+#ln -s ../../SHARED/namelist_ice_ref namelist_ice_ref
 ln -s ../../SHARED/grid_def_nemo.xml grid_def_nemo.xml
 ln -s ../../SHARED/field_def_nemo-oce.xml field_def_nemo-oce.xml
 ln -s ../../SHARED/field_def_nemo-ice.xml field_def_nemo-ice.xml
@@ -180,7 +180,7 @@ cp $REPO_DIR/EXP00/* $CONFIG_DIR/EXP00/
 cp -r $REPO_DIR/MY_SRC $CONFIG_DIR
 cp $REPO_DIR/cpp_eORCA1.fcm $CONFIG_DIR
 
-#cp /work/n01/n01/gig/eORCA1/RUNSCRIPT/MULTIMONTH/* $CONFIG_DIR/EXP00/
+cp /work/n01/n01/gig/eORCA1/RUNSCRIPT/MULTIMONTH/* $CONFIG_DIR/EXP00/
 
 cd $WORK_DIR/nemo/ext/FCM/lib/Fcm
 sed -e "s/FC_MODSEARCH => '',  /FC_MODSEARCH => '-J',/" Config.pm > tmp_file

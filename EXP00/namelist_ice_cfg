@@ -21,8 +21,8 @@
 !------------------------------------------------------------------------------
 &nampar         !   Generic parameters
 !------------------------------------------------------------------------------
-   jpl              =    4 !10         !  number of ice  categories
-   nlay_i           =    4 !5          !  number of ice  layers
+   jpl              =    10         !  number of ice  categories
+   nlay_i           =    5          !  number of ice  layers
 /
 !------------------------------------------------------------------------------
 &namitd         !   Ice discretization
