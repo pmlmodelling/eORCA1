@@ -263,7 +263,7 @@
    rn_shlat    =  0.0  !  shlat = 0  !  0 < shlat < 2  !  shlat = 2  !  2 < shlat
                        !  free slip  !   partial slip  !   no slip   ! strong slip
    ln_vorlat   = .false.   !  consistency of vorticity boundary condition with analytical eqs.
-!   ln_shlat2d  = .true.    !  use 2D file for shlat
+   ln_shlat2d  = .false.   !  use 2D file for shlat
 !              !  file name    ! frequency (hours) ! variable  ! time interp. !  clim  ! 'yearly'/ ! weights  ! rotation !
 !              !               !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename ! pairing  !
 !   sn_shlat2d  =  'shlat2d.nc' ,  -12             , 'shlat2d' ,  .false.    , .true.  ,  'yearly' , ''       , ''
@@ -371,8 +371,9 @@
 &namtra_ldf    !   lateral diffusion scheme for tracers
 !----------------------------------------------------------------------------------
    !                       !  Operator type:
-   ln_traldf_lap    =  .true.   !  laplacian operator
-   ln_traldf_iso    =  .true.   !  iso-neutral                 (needs "key_ldfslp")
+   ln_traldf_OFF   =  .false. !
+   ln_traldf_lap    =  .true. !.true.   !  laplacian operator
+   ln_traldf_iso    =  .true. !.true.   !  iso-neutral                 (needs "key_ldfslp")
    nn_aht_ijk_t    = 20        !  space/time variation of eddy coefficient:
       !                             !   =-20 (=-30)    read in eddy_diffusivity_2D.nc (..._3D.nc) file
       !                             !   =  0           constant

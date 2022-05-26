@@ -10,13 +10,13 @@
 /
 &variable
    name='N4_flux/flux'
-   sn=  'INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v6', -1, 'nhx', .false.,  .true., 'yearly', 'INPUTS/weights_coreII_2_eorca1_bilinear.nc', '', ''
+   sn=  'INPUTS/ndep-nhx_histsoc_monthly_atmosgrid', -1, 'nhx', .false.,  .false., 'yearly', 'INPUTS/weights_coreII_2_eorca1_bilinear.nc', '', ''
 /
 &variable
    name='N3_flux/flux'
-   sn=  'INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v3', -1, 'noy', .false., .true., 'yearly', 'INPUTS/weights_coreII_2_eorca1_bilinear.nc', '', ''
+   sn=  'INPUTS/ndep-noy_histsoc_monthly_atmosgrid', -1, 'noy', .false., .false., 'yearly', 'INPUTS/weights_coreII_2_eorca1_bilinear.nc', '', ''
 /
 &variable
    name='N7_flux/flux'
-   sn=  'INPUTS/dust_orca_nM_eORCA1_v1', -1, 'dust', .false., .true., 'yearly', '', '', ''
+   sn=  'INPUTS/dust_orca_nM_eORCA1_v2', -1, 'dust', .false., .true., 'yearly', '', '', ''
 /

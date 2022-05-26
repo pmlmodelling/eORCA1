@@ -167,11 +167,11 @@ mkdir INPUTS
 
 wget -r -nd -np -e robots=off -A '*.nc' http://gws-access.jasmin.ac.uk/public/jmmp_collab/eORCA1/ -P $CONFIG_DIR/INPUTS/
 
-cp /work/n01/shared/gig/MA_PML_INPUTS/eORCA1-CCI-ady-broadband-climatology-1997-2020.nc $CONFIG_DIR/INPUTS/
+#cp /work/n01/shared/gig/MA_PML_INPUTS/eORCA1-CCI-ady-broadband-climatology-1997-2020.nc $CONFIG_DIR/INPUTS/
 #cp /work/n01/shared/gig/MA_PML_INPUTS/ndep-nhx_histsoc_monthly_1901_2018_atmosgrid_v6.nc $CONFIG_DIR/INPUTS/ #done by setAnnuallinks
 #cp /work/n01/shared/gig/MA_PML_INPUTS/ndep-noy_histsoc_monthly_1901_2018_atmosgrid_v3.nc $CONFIG_DIR/INPUTS/
-cp /work/n01/shared/gig/MA_PML_INPUTS/dust_orca_nM_eORCA1_v2.nc $CONFIG_DIR/INPUTS/
-cp /work/n01/shared/gig/MA_dummy_inputs/pCO2a.nc $CONFIG_DIR/INPUTS/
+#cp /work/n01/shared/gig/MA_PML_INPUTS/dust_orca_nM_eORCA1_v2.nc $CONFIG_DIR/INPUTS/
+#cp /work/n01/shared/gig/MA_dummy_inputs/pCO2a.nc $CONFIG_DIR/INPUTS/
 ln -s $CONFIG_DIR/INPUTS/* $CONFIG_DIR/EXP00/INPUTS/
 
 ln -s $XIOS_DIR/bin/xios_server.exe $CONFIG_DIR/EXP00/xios_server.exe
@@ -180,7 +180,7 @@ cp $REPO_DIR/EXP00/* $CONFIG_DIR/EXP00/
 cp -r $REPO_DIR/MY_SRC $CONFIG_DIR
 cp $REPO_DIR/cpp_eORCA1.fcm $CONFIG_DIR
 
-cp /work/n01/n01/gig/eORCA1/RUNSCRIPT/MULTIMONTH/* $CONFIG_DIR/EXP00/
+#cp /work/n01/n01/gig/eORCA1/RUNSCRIPT/MULTIMONTH/* $CONFIG_DIR/EXP00/
 
 cd $WORK_DIR/nemo/ext/FCM/lib/Fcm
 sed -e "s/FC_MODSEARCH => '',  /FC_MODSEARCH => '-J',/" Config.pm > tmp_file

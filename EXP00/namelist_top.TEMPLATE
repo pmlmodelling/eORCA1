@@ -50,8 +50,8 @@
    sn_tracer(8)   = 'O3_c     ' , 'dissolved inorganic carbon  ',                      ' '  , .true.  ,  .false. , .false. , .false. , .false.
    sn_tracer(9)   = 'O3_TA     ' , 'carbonate alkalinity  ',                           ' '  , .true.  ,  .false. , .false. , .false. , .false.
    sn_tracer(10)   = 'R1_c     ' , 'labile Dissolved Organic Carbon',                  ' '  , .true.  ,  .false. , .false. , .false. , .false.
-   sn_tracer(11)   = 'R1_n     ' , 'labile Dissolved Organic Carbon',                  ' '  , .true.  ,  .false. , .false. , .false. , .false.
-   sn_tracer(12)   = 'R1_p     ' , 'labile Dissolved Organic Carbon',                  ' '  , .true.  ,  .false. , .false. , .false. , .false.
+   sn_tracer(11)   = 'R1_n     ' , 'labile Dissolved Organic Nitrogen',                ' '  , .true.  ,  .false. , .false. , .false. , .false.
+   sn_tracer(12)   = 'R1_p     ' , 'labile Dissolved Organic Phosphorous',             ' '  , .true.  ,  .false. , .false. , .false. , .false.
    sn_tracer(13)   = 'R2_c     ' , 'semi-labile Dissolved Organic Carbon',             ' '  , .true.  ,  .false. , .false. , .false. , .false.
    sn_tracer(14)   = 'R3_c     ' , 'semi-refractory Dissolved Organic Carbon',         ' '  , .true.  ,  .false. , .false. , .false. , .false.
    sn_tracer(15)   = 'R4_c     ' , 'small particulate carbon  ',                       ' '  , .true.  ,  .false. , .false. , .false. , .false.
@@ -120,8 +120,8 @@
       nn_cen_h   =  4               !  =2/4, horizontal 2nd order CEN / 4th order CEN
       nn_cen_v   =  4               !  =2/4, vertical   2nd order CEN / 4th order COMPACT
    ln_trcadv_fct =  .true.  !  FCT scheme
-      nn_fct_h   =  2               !  =2/4, horizontal 2nd / 4th order 
-      nn_fct_v   =  2               !  =2/4, vertical   2nd / COMPACT 4th order 
+      nn_fct_h   =  4               !  =2/4, horizontal 2nd / 4th order 
+      nn_fct_v   =  4               !  =2/4, vertical   2nd / COMPACT 4th order 
    ln_trcadv_mus =  .false.  !  MUSCL scheme
       ln_mus_ups =  .false.         !  use upstream scheme near river mouths
    ln_trcadv_ubs =  .false.  !  UBS scheme
@@ -132,9 +132,9 @@
 &namtrc_ldf    !   lateral diffusion scheme for passive tracer
 !-----------------------------------------------------------------------
 !                            !  Type of the operator:
-   ln_trcldf_OFF   =  .false.    !  No explicit diffusion
-   ln_trcldf_tra   =  .true.    !  use active tracer setting
-   !                         !  Coefficient (defined with namtra_ldf coefficient)
+   ln_trcldf_OFF   =  .false. !.false.    !  No explicit diffusion
+   ln_trcldf_tra   =  .true.  !.true.    !  use active tracer setting
+   !                          !  Coefficient (defined with namtra_ldf coefficient)
    rn_ldf_multi    = 1.          !  multiplier of aht for TRC mixing coefficient
    rn_fact_lap     = 1.          !  Equatorial enhanced zonal eddy diffusivity (lap only)
 /
