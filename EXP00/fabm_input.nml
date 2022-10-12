@@ -18,5 +18,19 @@
 /
 &variable
    name='N7_flux/flux'
-   sn=  'INPUTS/dust_orca_nM_eORCA1_v2', -1, 'dust', .false., .true., 'yearly', '', '', ''
+   sn=  'INPUTS/eORCA1_Fe_dep_GESAMP.nc', -1, 'LFe_dep', .false., .true., 'yearly', '', '', ''
 /
+&riverdata
+   name='O2_o'
+   sn=         'INPUTS/dummy_river_load', -1, 'O2_load', .true.,  .true.,   'yearly',     '',         '',        ''
+   rfac=1  !62.5 ! 1000./15.9994 (g/s -> mmol/s)
+/
+&riverdata
+   name='N3_n'
+   sn=         'INPUTS/dummy_river_load', -1, 'N3_load', .true.,  .true.,   'yearly',     '',         '',        ''
+   rfac=1  !62.5 ! 1000./15.9994 (g/s -> mmol/s)
+/
+&riverdata
+   name='N4_n'
+   sn=         'INPUTS/dummy_river_load', -1, 'N4_load', .true.,  .true.,   'yearly',     '',         '',        ''
+   rfac=1  !62.5 ! 1000./15.9994 (g/s -> mmol/s)

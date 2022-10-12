@@ -1,4 +1,4 @@
-!!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 !! NEMO/OPA  Configuration namelist : used to overwrite defaults values defined in SHARED/namelist_ref
 !!>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 !
@@ -41,7 +41,7 @@
 !-----------------------------------------------------------------------
    ln_meshmask = .false.
                            !
-   rn_rdt      = 2700.      !  time step for the dynamics (and tracer if nn_acc=0)
+   rn_rdt      = 900. !2700.     !  time step for the dynamics (and tracer if nn_acc=0)
    rn_atfp     =    0.1    !  asselin time filter parameter
 /
 !-----------------------------------------------------------------------
@@ -195,7 +195,7 @@
 !              !  file name                                       ! frequency (hours) ! variable  ! time interp. !  clim  ! 'yearly'/ ! weights  ! rotation ! land/sea mask!
 !              !                                                  !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename ! pairing  ! filename     !
    sn_rnf      = 'runoff-icb_DaiTrenberth_Depoorter_eORCA1_JD.nc',        -1         , 'sorunoff',   .true.     , .true. , 'yearly'  , ''       , ''       , ''
-   sn_cnf      = 'runoff-icb_DaiTrenberth_Depoorter_eORCA1_JD.nc',         0         , 'socoeff' ,   .false.    , .true. , 'yearly'  , ''       , ''       , ''
+   sn_cnf      = 'runoff-icb_DaiTrenberth_Depoorter_eORCA1_JD.nc',         0         , 'socoefr' ,   .false.    , .true. , 'yearly'  , ''       , ''       , ''
 
    cn_dir       = './INPUTS/'      !  root directory for the location of the runoff files
    ln_rnf_mouth = .false. !!true. !rbb.false.   !  specific treatment at rivers mouths
@@ -359,6 +359,8 @@
    ln_traadv_fct = .true.  !  FCT scheme
       nn_fct_h   =  4            !  =2/4, horizontal 2nd / 4th order
       nn_fct_v   =  4            !  =2/4, vertical   2nd / COMPACT 4th order
+   ln_traadv_mus = .false. !  MUSCL scheme
+      ln_mus_ups = .false.       !  use upstream scheme near river mouths
 /
 !-----------------------------------------------------------------------
 &namtra_mle !   mixed layer eddy parametrisation (Fox-Kemper param)
@@ -513,7 +515,8 @@
 &namzdf        !   vertical physics
 !-----------------------------------------------------------------------
    ln_zad_Aimp = .true.      !  Courant number dependent scheme (Shchepetkin 2015)
-   ln_zdftke   = .true.
+   ln_zdfgls   = .true.      !  Generic Length Scale closure           (T =>   fill namzdf_gls)
+   ln_zdftke   = .false.
    rn_avm0     =   1.2e-4   !  vertical eddy viscosity   [m2/s]          (background Kz if not "key_zdfcst")
    rn_avt0     =   1.2e-5   !  vertical eddy diffusivity [m2/s]          (background Kz if not "key_zdfcst")
    nn_avb      =    0      !  profile for background avt & avm (=1) or not (=0)
@@ -588,8 +591,8 @@
    ln_listonly =  .false.  !  do nothing else than listing the best domain decompositions (with land domains suppression)
    !                       !  if T: the largest number of cores tested is defined by max(mppsize, jpni*jpnj)
    ln_nnogather=  .true.   !
-    jpni        = 15 !9
-    jpnj        = 15 !5
+    jpni        =  36 !52 !15 
+    jpnj        =  22 !30 !15
 /
 !-----------------------------------------------------------------------
 &namctl        !   Control prints & Benchmark

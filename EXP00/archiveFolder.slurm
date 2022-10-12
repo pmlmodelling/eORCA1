@@ -13,9 +13,7 @@ cd $RUNDIR
 
 # submit as:
 # sbatch --export=RUNDIR=$PWD,ARCHIVEDIR=$ARCHIVEDIR,folder=$fname archiveFolder.slurm
-# sbatch --export=RUNDIR=$PWD,folder=$fname archiveFolder.slurm
 
-#MERGETOOL=/work/n01/n01/gig/nocscombine-5
 REBUILD=/work/n01/n01/gig/rebuild_nemo.exe
 
 MONTH=${folder:5:2}
@@ -23,6 +21,8 @@ MONTH=${folder:5:2}
 module load PrgEnv-gnu
 module load cray-hdf5-parallel
 module load cray-netcdf-hdf5parallel
+
+time_start=`date +%y%m%d%H%M%S`
 
 cd $RUNDIR
 
@@ -33,16 +33,17 @@ then
   #mkdir -p $ARCHIVEDIR/$folder
   #chmod g+rX $ARCHIVEDIR
 
-#  rm nam_rebuild
-#  rm nam_rebuild_trc
-#  rm nam_rebuild_ice
-#  echo $'&nam_rebuild\nfilebase=\'restart\'\nndomain=176\n/' >> nam_rebuild
-#  echo $'&nam_rebuild\nfilebase=\'restart_trc\'\nndomain=176\n/' >> nam_rebuild_trc
-#  echo $'&nam_rebuild\nfilebase=\'restart_ice\'\nndomain=176\n/' >> nam_rebuild_ice
-#
-#  $REBUILD nam_rebuild && nccopy -k 4 -d 9 restart.nc restart-C.nc && mv restart-C.nc restart.nc rm restart_????.nc && echo "archived restart.nc" || echo "ERROR, restart.nc failed!!!"
-#  $REBUILD nam_rebuild && nccopy -k 4 -d 9 restart_trc.nc restart_trc-C.nc && mv restart_trc-C.nc restart_trc.nc rm restart_trc_????.nc && echo "archived restart_trc.nc" || echo "ERROR, restart_trc.nc failed!!!"
-#  $REBUILD nam_rebuild && nccopy -k 4 -d 9 restart_ice.nc restart_ice-C.nc && mv restart_ice-C.nc restart_ice.nc rm restart_ice_????.nc && echo "archived restart_ice.nc" || echo "ERROR, restart_ice.nc failed!!!"
+  rm nam_rebuild
+  rm nam_rebuild_trc
+  rm nam_rebuild_ice
+  ndom=$(ls -1 restart_????.nc | wc -l)
+  echo -e "&nam_rebuild\nfilebase='restart'\nndomain=$ndom\n/" >> nam_rebuild
+  echo -e "&nam_rebuild\nfilebase='restart_trc'\nndomain=$ndom\n/" >> nam_rebuild_trc
+  echo -e "&nam_rebuild\nfilebase='restart_ice'\nndomain=$ndom\n/" >> nam_rebuild_ice
+
+  $REBUILD nam_rebuild && nccopy -k 4 -d 9 restart.nc restart-C.nc && mv restart-C.nc restart.nc && rm restart_????.nc && echo "archived restart.nc" || echo "ERROR, restart.nc failed!!!"
+  $REBUILD nam_rebuild_trc && nccopy -k 4 -d 9 restart_trc.nc restart_trc-C.nc && mv restart_trc-C.nc restart_trc.nc && rm restart_trc_????.nc && echo "archived restart_trc.nc" || echo "ERROR, restart_trc.nc failed!!!"
+  $REBUILD nam_rebuild_ice && nccopy -k 4 -d 9 restart_ice.nc restart_ice-C.nc && mv restart_ice-C.nc restart_ice.nc && rm restart_ice_????.nc && echo "archived restart_ice.nc" || echo "ERROR, restart_ice.nc failed!!!"
 
   for file in eORCA1*.nc
   do
@@ -69,4 +70,7 @@ then
 #    chmod -R g+rX $folder/..
 #  done
 fi
-echo "Done."
+
+time_end=`date +%y%m%d%H%M%S`
+
+echo "Done in $(( (time_end-time_start) /60  )) minutes."

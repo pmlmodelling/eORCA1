@@ -39,7 +39,7 @@
    nn_itend    =    5840   !  last  time step (std 5840)
    nn_date0    =  010101   !  date at nit_0000 (format yyyymmdd) used if ln_rstart=F or (ln_rstart=T and nn_rstctl=0 or 1)
    nn_time0    =       0   !  initial time of day in hhmm
-   nn_leapy    =       0   !  Leap year calendar (1) or not (0)
+   nn_leapy    =       1   !  Leap year calendar (1) or not (0)
    ln_rstart   = .false.   !  start from rest (F) or from a restart file (T)
       nn_euler    =    1      !  = 0 : start with forward time step if ln_rstart=T
       nn_rstctl   =    0      !  restart control ==> activated only if ln_rstart=T

@@ -23,7 +23,8 @@ RUNPATH=$PWD
 
 # 1969 Restarts
 mkdir -p $RUNPATH/1969/12
-rsync -aP $INDIR_GIG/restart_trc_v12.nc $RUNPATH/1969/12/restart_trc.nc
+rsync -aP $INDIR_GIG/restart_trc_v15.nc $RUNPATH/1969/12/restart_trc.nc
+#rsync -aP $INDIR_GIG/restart_trc_v13.nc $RUNPATH/1969/12/restart_trc.nc
 rsync -aP $INDIR_GIG_RESTARTS/restart_jdha.nc $RUNPATH/1969/12/restart.nc
 rsync -aP $INDIR_GIG_RESTARTS/eORCA1_00140160_restart_ice.nc $RUNPATH/1969/12/restart_ice.nc
 
@@ -34,10 +35,14 @@ rsync -aP $INDIR_JDHA/eddy_viscosity_3D.nc $RUNPATH/
 rsync -aP $INDIR_GIG/eORCA1-CCI-ady-broadband-climatology-1997-2020.nc $RUNPATH/INPUTS
 
 # iron deposition climatology
-rsync -aP $INDIR_GIG/dust_orca_nM_eORCA1_v2.nc $RUNPATH/INPUTS
+#rsync -aP $INDIR_GIG/dust_orca_nM_eORCA1_v2.nc $RUNPATH/INPUTS
+rsync -aP $INDIR_GIG/eORCA1_Fe_dep_GESAMP.nc $RUNPATH/INPUTS
 
 # pCO2 climatology
 rsync -aP $INDIR_GIG_DUMMY/pCO2a.nc $RUNPATH/INPUTS
+
+# river nutrient loads
+rsync -aP $INDIR_GIG/dummy_river_load.nc $RUNPATH/INPUTS
 
 # weights
 rsync -aP $INDIR_JDHA/INPUTS/weights_JRA_bicubic.nc $RUNPATH/INPUTS
